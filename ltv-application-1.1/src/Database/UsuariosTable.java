@@ -13,7 +13,7 @@ public class UsuariosTable {
 		
 	}
 	
-	public UsuariosTable (String Nombre, String Email, String Cargo, String Usuario, String Clave, String Disponible ) {
+	public UsuariosTable (String Nombre, String Email, String Cargo, String Usuario, String Clave, String Disponible) {
 		this.NOMBRE=Nombre;
 		this.EMAIL=Email;
 		this.CARGO=Cargo;

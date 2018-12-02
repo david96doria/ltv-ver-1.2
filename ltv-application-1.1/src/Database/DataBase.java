@@ -1,63 +1,61 @@
 package Database;
-
 import java.sql.*;
 
-import javax.xml.stream.util.StreamReaderDelegate;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class DataBase {
+
+	private static final String path = "jdbc:mysql://localhost:3306/ltv-database";
+	private static final String user = "root";
+	private static final String pass = "";
 	private Connection Conexion;
 	private PreparedStatement stInsert;
 	private PreparedStatement stCheck;
 	private PreparedStatement stDelete;
 	private PreparedStatement stUpdate;
-	
-////////////PREPARACION DE STATEMENTS \\\\\\\\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	
-	public void print(String mss) { System.out.print(mss); }
-	
+
+	public void PrintErrMss(String mss) { JOptionPane.showMessageDialog(new JPanel(), mss, "Error", JOptionPane.ERROR_MESSAGE); }
+	public void PrintInfMss(String mss) { JOptionPane.showMessageDialog(new JPanel(), mss, "OK", JOptionPane.INFORMATION_MESSAGE); }
+
 	public void PrepareSolicitudes() throws Exception {
-		Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ltv-database","root","");
-		stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?)");
-	    stCheck = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE cliente=?");
-	    stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE cliente=?");
-	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET usuario=?, estatus=? WHERE cliente=?");
+		Conexion = DriverManager.getConnection(path, user, pass);
+		stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?,?,?,?)");
+		stCheck  = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE agente=?");
+		stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE status=?");
+		stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET status=?, WHERE cliente=?");
+		// still pending to be well defined
 	}
 
 	public void PrepareUsuarios() throws Exception {
-		Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ltv-database","root","");
-		stInsert = Conexion.prepareStatement("INSERT INTO usuariostable VALUES (?,?,?,?,?,?)");
-	    stCheck = Conexion.prepareStatement("SELECT * FROM usuariostable WHERE usuario=?");
-	    stDelete = Conexion.prepareStatement("DELETE FROM usuariostable WHERE nombre=?");
-	    stUpdate = Conexion.prepareStatement("UPDATE usuariostable SET usuario=?, clave=? WHERE nombre=?");
-
+		Conexion = DriverManager.getConnection(path, user, pass);
+		stInsert = Conexion.prepareStatement("INSERT INTO usuariostable VALUES (?,?,?,?,?,?,?)");
+		stCheck  = Conexion.prepareStatement("SELECT * FROM usuariostable WHERE usuario=?");
+		stDelete = Conexion.prepareStatement("DELETE FROM usuariostable WHERE usuario=?");
+		stUpdate = Conexion.prepareStatement("UPDATE usuariostable SET nombre=?, email=?, cargo=?, clave=?, disponible=?, inicio=? WHERE usuario=?");
 	}
 
 	public void PrepareClientes() throws Exception {
-		Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ltv-database","root","");
+		Conexion = DriverManager.getConnection(path, user, pass);
 		stInsert = Conexion.prepareStatement("INSERT INTO clientestable VALUES (?,?,?,?)");
-	    stCheck = Conexion.prepareStatement("SELECT * FROM clientestable WHERE nombre=?");
-	    stDelete = Conexion.prepareStatement("DELETE FROM clientestable WHERE nombre=?");
-	    stUpdate = Conexion.prepareStatement("UPDATE clientestable SET telefono=?, email=? WHERE nombre=?");
-
+		stCheck = Conexion.prepareStatement("SELECT * FROM clientestable WHERE nombre=?");
+		stDelete = Conexion.prepareStatement("DELETE FROM clientestable WHERE nombre=?");
+		stUpdate = Conexion.prepareStatement("UPDATE clientestable SET email=?, telefono=? WHERE nombre=?");
 	}
-	
+
 	public void CloseDataBase() {
-	      try {
-	        Conexion.close();
-	      } catch (SQLException ex) {
-	          
-	         System.out.println("Error al cerrar la Conexion a la BD");
-	         System.out.println(ex.getMessage());
-	          
-	      }
-	    }
-	
+		try {
+			Conexion.close();
+		}catch (SQLException ex) {
+			PrintErrMss("Error al cerrar la Conexion a la BD");
+			System.out.println(ex.getMessage());
+		}
+	}
+
 	//////////// SOLICITUDES \\\\\\\\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	
 	public SolicitudesTable CheckSolicitudes(String Cliente) {
 		SolicitudesTable Solicitud = null;
 		try {
-			
 			stCheck.setString(1,Cliente);
 			ResultSet miResultset = stCheck.executeQuery();
 			
@@ -74,7 +72,7 @@ public class DataBase {
 	         System.out.println(ex.getMessage()); return null;}
 		
 	}
-	
+
 	public void UpdateSolicitudes(String Cliente) {
 		try {
 			SolicitudesTable Solicitud = new SolicitudesTable();
@@ -114,11 +112,10 @@ public class DataBase {
 	public UsuariosTable CheckUsuarios(String Nombre) {
 		UsuariosTable Usuario = null;
 	try {
-		
 		stCheck.setString(1, Nombre);
 		ResultSet miResultset=stCheck.executeQuery();
 		miResultset.next();
-		print(miResultset.getString("clave"));
+//		print(miResultset.getString("clave"));
 		
 		while(miResultset.next()) {
 			if(Nombre.equals(miResultset.getString("nombre"))) {
@@ -132,20 +129,24 @@ public class DataBase {
 	}catch(SQLException ex) {System.out.println("Error al consultar usuario");
     System.out.println(ex.getMessage()); return null;}
 	}
-	
+
 	public UsuariosTable findUsuario(String Usuario) {
 		try {
 			stCheck.setString(1, Usuario);
 			ResultSet miResultset=stCheck.executeQuery();
 			miResultset.next();
-			return new UsuariosTable(miResultset.getString("nombre"), miResultset.getString("email"), 
-					miResultset.getString("cargo"), miResultset.getString("usuario"), miResultset.getString("clave"), 
-					miResultset.getString("disponible"));
+			return new UsuariosTable(miResultset.getString("nombre"), 
+									 miResultset.getString("email"), 
+									 miResultset.getString("cargo"), 
+									 miResultset.getString("usuario"), 
+									 miResultset.getString("clave"), 
+									 miResultset.getString("disponible")
+									);
 		}catch(Exception e) {
 			return null;
 		}
 	}
-	
+
 	public void UpdateUsuarios(String Nombre) {
 		try {
 			UsuariosTable Usuario = new UsuariosTable();
