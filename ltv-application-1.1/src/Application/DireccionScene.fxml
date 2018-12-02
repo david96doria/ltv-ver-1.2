@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <MenuBar layoutX="10.0" layoutY="10.0" prefHeight="510.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="Archivo">
+               <items>
+                  <Menu mnemonicParsing="false" text="Administrar usuarios">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Nuevo usuario" />
+                        <MenuItem mnemonicParsing="false" text="Baja de usuarios" />
+                        <MenuItem mnemonicParsing="false" text="Modificar" />
+                    </items>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" text="Captura de Datos" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Cerrar sesión" />
+                  <MenuItem mnemonicParsing="false" text="Salir" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Editar">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Deshacer" />
+                  <MenuItem mnemonicParsing="false" text="Pegar" />
+                  <MenuItem mnemonicParsing="false" text="Copiar" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Vista">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Consulta de Clientes" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Ayuda">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="Acerca de La Tienda del Viaje" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <TabPane prefHeight="510.0" prefWidth="610.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+        <tabs>
+          <Tab text="Inicio">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+          <Tab text="Monitoreo">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="481.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Usuario" />
+                            <TableColumn prefWidth="75.0" text="Solicitudes" />
+                              <TableColumn prefWidth="75.0" text="Cotizaciones" />
+                              <TableColumn prefWidth="75.0" text="Ventas" />
+                              <TableColumn prefWidth="75.0" text="Estatus" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Utiliidades">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BorderPane prefHeight="481.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <top>
+                              <AnchorPane prefHeight="52.0" prefWidth="610.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <Label alignment="CENTER" layoutX="165.0" layoutY="29.0" prefHeight="74.0" prefWidth="610.0" text="Ventas y Utilidades" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </top>
+                           <center>
+                              <AnchorPane prefHeight="412.0" prefWidth="444.0" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <BarChart layoutX="-45.0" layoutY="-23.0" prefHeight="407.0" prefWidth="455.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <xAxis>
+                                        <CategoryAxis label="UTILIDAD EN USD" side="BOTTOM" />
+                                      </xAxis>
+                                      <yAxis>
+                                        <NumberAxis label="VENTAS MENSUALES" side="LEFT" />
+                                      </yAxis>
+                                    </BarChart>
+                                 </children>
+                              </AnchorPane>
+                           </center>
+                           <right>
+                              <AnchorPane prefHeight="396.0" prefWidth="166.0" BorderPane.alignment="CENTER" />
+                           </right>
+                        </BorderPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Administracion de pago">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TableView prefHeight="481.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columns>
+                              <TableColumn prefWidth="75.0" text="Expedinte" />
+                              <TableColumn prefWidth="75.0" text="Cliente" />
+                              <TableColumn prefWidth="75.0" text="Deposito" />
+                              <TableColumn prefWidth="75.0" text="Provedores" />
+                              <TableColumn prefWidth="75.0" text="Abono" />
+                              <TableColumn prefWidth="75.0" text="Saldo" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
