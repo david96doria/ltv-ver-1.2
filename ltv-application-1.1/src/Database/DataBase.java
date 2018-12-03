@@ -41,6 +41,15 @@ public class DataBase {
 
 	}
 	
+	public void PrepareVentas() throws Exception {
+		Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ltv-database","root","");
+		stInsert = Conexion.prepareStatement("INSERT INTO ventastable VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+	    stCheck = Conexion.prepareStatement("SELECT * FROM ventastable WHERE expediente=?");
+	    //stDelete = Conexion.prepareStatement("DELETE FROM ventastable WHERE nombre=?");
+	    stUpdate = Conexion.prepareStatement("UPDATE clientestable SET PROGRAMA=?, PROVEEDORES=?,TOTAL VENTA=?, DEPOSITO=?, FECHA LIMITE=?, FECHA VIAJE=?, EXPEDIENTE=?, TOTAL A PAGAR=?, FECHA=?, VENDEDOR=? WHERE CLIENTE=?");
+
+	}
+	
 	public void CloseDataBase() {
 	      try {
 	        Conexion.close();
@@ -235,4 +244,67 @@ public class DataBase {
 	    System.out.println(ex.getMessage());}
 	}
 	
+	//////////// VENTAS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+	
+	public VentasTable CheckVentas(String Expediente) {
+		VentasTable Venta=null;
+		try {
+			stCheck.setString(1, Expediente);
+			ResultSet miResultset=stCheck.executeQuery();
+			
+			Venta = new VentasTable(miResultset.getString("cliente"), miResultset.getString("programa"),
+									miResultset.getString("proveedores"), miResultset.getDouble("total venta"),
+									miResultset.getDouble("deposito"), miResultset.getString("fecha limite"),
+									miResultset.getString("fecha viaje"), miResultset.getString("expediente"),
+									miResultset.getDouble("total a pagar"), miResultset.getString("fecha"),
+									miResultset.getString("usuario"));
+		miResultset.close();	
+		return Venta;	
+		
+		}catch(SQLException ex) {System.out.println("Error al consultar venta");
+	    System.out.println(ex.getMessage()); return null;}
+		}
+	
+	public void UpdateVenta(String Cliente) {
+		try {
+			VentasTable Venta = new VentasTable();
+			stUpdate.setString(11, Cliente);
+			
+			stUpdate.setString(1, Venta.getPROGRAMA());
+			stUpdate.setString(2, Venta.getPROVEEDORES());
+			stUpdate.setDouble(3, Venta.getTOTAL_VENTA());
+			stUpdate.setDouble(4, Venta.getDEPOSITO());
+			stUpdate.setString(5, Venta.getFECHA_LIMITE());
+			stUpdate.setString(6, Venta.getFECHA_VIAJE());
+			stUpdate.setString(7, Venta.getEXPEDIENTE());
+			stUpdate.setDouble(8, Venta.getTOTAL_PAGAR());
+			stUpdate.setString(9, Venta.getFECHA());
+			stUpdate.setString(10, Venta.getVENDEDOR());
+			stUpdate.executeQuery();
+		}catch(SQLException ex) {System.out.println("Error al modificar venta");
+	    System.out.println(ex.getMessage());}
+		}
+	
+	public void InsertVenta() {
+		try {
+			VentasTable Venta = new VentasTable();
+			
+			stInsert.setString(1, Venta.getCLIENTE());
+			stInsert.setString(2, Venta.getPROGRAMA());
+			stInsert.setString(3, Venta.getPROVEEDORES());
+			stInsert.setDouble(4, Venta.getTOTAL_VENTA());
+			stInsert.setDouble(5, Venta.getDEPOSITO());
+			stInsert.setString(6, Venta.getFECHA_LIMITE());
+			stInsert.setString(7, Venta.getFECHA_VIAJE());
+			stInsert.setString(8, Venta.getEXPEDIENTE());
+			stInsert.setDouble(9, Venta.getTOTAL_PAGAR());
+			stInsert.setString(10, Venta.getFECHA());
+			stInsert.setString(11, Venta.getVENDEDOR());
+			stInsert.executeQuery();
+			
+			
+		}catch(SQLException ex) {System.out.println("Error al ingresar venta");
+	    System.out.println(ex.getMessage());}
+		
+	}
 }//end class

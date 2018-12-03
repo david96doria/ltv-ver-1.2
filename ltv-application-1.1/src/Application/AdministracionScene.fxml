@@ -205,16 +205,19 @@
                           <items>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
-                                    <TableView nodeOrientation="LEFT_TO_RIGHT" prefHeight="444.0" prefWidth="219.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tableVentas" nodeOrientation="LEFT_TO_RIGHT" prefHeight="444.0" prefWidth="219.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
                                           <TableColumn prefWidth="75.0" text="Cliente" />
                                           <TableColumn prefWidth="75.0" text="Programa" />
                                           <TableColumn prefWidth="75.0" text="Poveedores" />
                                           <TableColumn prefWidth="75.0" text="Total Venta" />
                                           <TableColumn prefWidth="75.0" text="Desposito" />
-                                          <TableColumn prefWidth="75.0" text="Saldo" />
                                           <TableColumn prefWidth="75.0" text="Fecha Limite" />
                                           <TableColumn prefWidth="86.0" text="Fecha de Viaje" />
+                                          <TableColumn prefWidth="75.0" text="Expediente" />
+                                          <TableColumn prefWidth="75.0" text="Total a Pagar" />
+                                          <TableColumn prefWidth="75.0" text="Fecha" />
+                                          <TableColumn prefWidth="75.0" text="Vendedor" />
                                        </columns>
                                        <cursor>
                                           <Cursor fx:constant="HAND" />
@@ -235,16 +238,16 @@
                                        <center>
                                           <AnchorPane prefHeight="292.0" prefWidth="306.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <TextArea layoutX="61.0" layoutY="60.0" prefHeight="242.0" prefWidth="463.0" promptText="Pograma de Servicios" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <TextArea fx:id="txtDetallesServicios" layoutX="61.0" layoutY="60.0" prefHeight="242.0" prefWidth="463.0" promptText="Pograma de Servicios" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                        </center>
                                        <bottom>
                                           <AnchorPane prefHeight="149.0" prefWidth="471.0" BorderPane.alignment="CENTER">
                                              <children>
-                                                <Button alignment="CENTER" layoutX="188.0" layoutY="25.0" mnemonicParsing="false" text="Modificar" AnchorPane.bottomAnchor="99.0" AnchorPane.topAnchor="25.0" />
-                                                <Button alignment="CENTER" layoutX="269.0" layoutY="25.0" mnemonicParsing="false" text="Gestionar pagos" AnchorPane.bottomAnchor="99.0" AnchorPane.topAnchor="25.0" />
-                                                <Button alignment="CENTER" layoutX="379.0" layoutY="25.0" mnemonicParsing="false" text="Eliminar" AnchorPane.bottomAnchor="99.0" AnchorPane.topAnchor="25.0" />
+                                                <Button fx:id="btnModificarVenta" alignment="CENTER" layoutX="188.0" layoutY="25.0" mnemonicParsing="false" text="Modificar" AnchorPane.bottomAnchor="99.0" AnchorPane.topAnchor="25.0" />
+                                                <Button fx:id="btnGestionarPago" alignment="CENTER" layoutX="269.0" layoutY="25.0" mnemonicParsing="false" text="Gestionar pagos" AnchorPane.bottomAnchor="99.0" AnchorPane.topAnchor="25.0" />
+                                                <Button fx:id="btnEliminar" alignment="CENTER" layoutX="379.0" layoutY="25.0" mnemonicParsing="false" text="Eliminar" AnchorPane.bottomAnchor="99.0" AnchorPane.topAnchor="25.0" />
                                              </children></AnchorPane>
                                        </bottom>
                                     </BorderPane>
@@ -255,41 +258,6 @@
                      </children>
                   </AnchorPane>
                </content>
-            </Tab>
-            <Tab text="Gestion de pagos">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <SplitPane dividerPositions="0.7941834451901566" orientation="VERTICAL" prefHeight="449.0" prefWidth="756.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="754.0">
-                                 <children>
-                                    <TableView layoutX="417.0" layoutY="39.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="348.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <columns>
-                                        <TableColumn prefWidth="88.0" text="Expediente" />
-                                        <TableColumn prefWidth="87.0" text="Proveedores" />
-                                          <TableColumn prefWidth="108.0" text="Total a Pagar" />
-                                      </columns>
-                                       <cursor>
-                                          <Cursor fx:constant="HAND" />
-                                       </cursor>
-                                    </TableView>
-                                 </children>
-                              </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="754.0">
-                                 <children>
-                                    <Pane prefHeight="89.0" prefWidth="754.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <children>
-                                          <Button alignment="CENTER" layoutX="373.0" layoutY="22.0" mnemonicParsing="false" text="Enviar a Contabilidad" />
-                                          <Button alignment="CENTER" layoutX="231.0" layoutY="22.0" mnemonicParsing="false" text="Asignar Expediante" />
-                                       </children>
-                                    </Pane>
-                                 </children>
-                              </AnchorPane>
-                          </items>
-                        </SplitPane>
-                     </children></AnchorPane>
-              </content>
             </Tab>
         </tabs>
       </TabPane>
