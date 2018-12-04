@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.InicioController">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fx:id="imLTV" fitHeight="200.0" fitWidth="210.0" layoutX="45.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Diseño%20Operacional/Imagenes/LOGO_LTV_3.0.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblUsuario" layoutX="116.0" layoutY="226.0" text="ID de agente" />
+            <TextField fx:id="txtUsuario" layoutX="76.0" layoutY="250.0" />
+            <Label fx:id="lblContrasena" layoutX="120.0" layoutY="289.0" text="Contraseña" />
+            <Button fx:id="btnInicio" layoutX="101.0" layoutY="366.0" mnemonicParsing="false" onAction="#callInicio" text="Inicio de sesión" />
+            <PasswordField fx:id="txtContrasena" layoutX="75.0" layoutY="318.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

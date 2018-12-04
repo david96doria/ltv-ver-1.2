@@ -90,7 +90,7 @@ public class DataBase {
 			stUpdate.setString(3, Cliente);
 			stUpdate.setString(1, Solicitud.getUSUARIO());
 			stUpdate.setString(2, Solicitud.getESTATUS());
-			stUpdate.executeQuery();
+			stUpdate.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al actualizar solicitud");
         System.out.println(ex.getMessage());}
 		
@@ -99,7 +99,7 @@ public class DataBase {
 	public void DeleteSolicitudes(String Cliente) {
 		try {
 			stDelete.setString(1, Cliente);
-			stDelete.executeQuery();
+			stDelete.executeUpdate();
 			
 		}catch(SQLException ex) {System.out.println("Error al eliminar solicitud");
         System.out.println(ex.getMessage());}
@@ -113,7 +113,7 @@ public class DataBase {
 			stInsert.setString(3, Solicitud.getSOLICITUD());
 			stInsert.setString(4, Solicitud.getESTATUS());
 			stInsert.setString(5, Solicitud.getUSUARIO());
-			stInsert.executeQuery();
+			stInsert.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al ingresar solicitud");
         System.out.println(ex.getMessage());}
 	}
@@ -161,7 +161,7 @@ public class DataBase {
 			stUpdate.setString(3, Nombre);
 			stUpdate.setString(1, Usuario.getUSUARIO());
 			stUpdate.setString(2, Usuario.getCLAVE());
-			stUpdate.executeQuery();
+			stUpdate.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al actualizar usuario");
         System.out.println(ex.getMessage());}
 		
@@ -170,7 +170,7 @@ public class DataBase {
 	public void DeleteUsuarios(String Nombre) {
 		try {
 			stDelete.setString(1, Nombre);
-			stDelete.executeQuery();
+			stDelete.executeUpdate();
 			
 		}catch(SQLException ex) {System.out.println("Error al eliminar usuario");
         System.out.println(ex.getMessage());}
@@ -185,7 +185,7 @@ public class DataBase {
 		stInsert.setString(3, Usuario.getCARGO());
 		stInsert.setString(4, Usuario.getUSUARIO());
 		stInsert.setString(5, Usuario.getCLAVE());
-		stInsert.executeQuery();
+		stInsert.executeUpdate();
 	}catch(SQLException ex) {System.out.println("Error al ingresar usuario");
     System.out.println(ex.getMessage());}
 	}
@@ -218,7 +218,7 @@ public class DataBase {
 			stUpdate.setString(3, Nombre);
 			stUpdate.setString(1, Cliente.getTELEFONO());
 			stUpdate.setString(2, Cliente.getEMAIL());
-			stUpdate.executeQuery();
+			stUpdate.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al actualizar cliente");
         System.out.println(ex.getMessage());}
 	}
@@ -226,7 +226,7 @@ public class DataBase {
 	public void DeleteClientes(String Nombre) {
 		try {
 			stDelete.setString(1, Nombre);
-			stDelete.executeQuery();
+			stDelete.executeUpdate();
 			
 		}catch(SQLException ex) {System.out.println("Error al eliminar cliente");
         System.out.println(ex.getMessage());}
@@ -239,7 +239,7 @@ public class DataBase {
 			stInsert.setString(2, Cliente.getEMAIL());
 			stInsert.setString(3, Cliente.getTELEFONO());
 			stInsert.setString(4, Cliente.getUBICACION());
-			stInsert.executeQuery();
+			stInsert.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al ingresar cliente");
 	    System.out.println(ex.getMessage());}
 	}
@@ -280,7 +280,7 @@ public class DataBase {
 			stUpdate.setDouble(8, Venta.getTOTAL_PAGAR());
 			stUpdate.setString(9, Venta.getFECHA());
 			stUpdate.setString(10, Venta.getVENDEDOR());
-			stUpdate.executeQuery();
+			stUpdate.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al modificar venta");
 	    System.out.println(ex.getMessage());}
 		}
@@ -300,7 +300,7 @@ public class DataBase {
 			stInsert.setDouble(9, Venta.getTOTAL_PAGAR());
 			stInsert.setString(10, Venta.getFECHA());
 			stInsert.setString(11, Venta.getVENDEDOR());
-			stInsert.executeQuery();
+			stInsert.executeUpdate();
 			
 			
 		}catch(SQLException ex) {System.out.println("Error al ingresar venta");

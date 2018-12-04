@@ -32,7 +32,7 @@ public class InicioController {
 			if(user.getCLAVE().equals(txtContrasena.getText())) {
 				btnInicio.getScene().getWindow().hide();
 				switch (user.getCARGO().charAt(0)) {
-					case 'R': objMain.changeScene("ReservacionesScene.fxml");	break;
+					case 'R': objMain.changeScene("ReservacionesScene.fxml");	objDatabase.CloseDataBase(); break;
 					case 'A': objMain.changeScene("AdministracionScene.fxml");	break;
 					case 'C': objMain.changeScene("ContabilidadScene.fxml");	break;
 					case 'D': objMain.changeScene("DireccionScene.fxml");		break;
