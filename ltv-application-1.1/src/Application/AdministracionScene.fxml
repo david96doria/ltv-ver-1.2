@@ -33,7 +33,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Vista">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#btnConsultaClientes" text="Consulta de Clientes" />
+                <MenuItem mnemonicParsing="false" onAction="#MostrarSolicitudesEntrantes" text="Consulta de Clientes" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
@@ -60,7 +60,7 @@
                      <children>
                         <Accordion nodeOrientation="LEFT_TO_RIGHT" prefHeight="446.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <panes>
-                            <TitledPane fx:id="tltpEntrantes" animated="false" onDragDetected="#MostrarSolicitudesEntrantes" text="Entrantes">
+                            <TitledPane fx:id="tltpEntrantes" animated="false" text="Entrantes">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>

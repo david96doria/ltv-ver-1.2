@@ -17,7 +17,7 @@ public class InicioController {
 	public PasswordField	txtContrasena;
 	
 	Main objMain = new Main();
-	DataBase objDatabase = new DataBase();
+	DataBase database = new DataBase();
 	UsuariosTable user = new UsuariosTable();
 
 	///////////////////////////////////////////////////////////////////////////
@@ -26,16 +26,16 @@ public class InicioController {
 	
 	public void callInicio () {
 		try {
-			objDatabase.PrepareUsuarios();
-			user = objDatabase.findUsuario(txtUsuario.getText());
+			database.PrepareUsuarios();
+			user = database.findUsuario(txtUsuario.getText());
 			
 			if(user.getCLAVE().equals(txtContrasena.getText())) {
 				btnInicio.getScene().getWindow().hide();
 				switch (user.getCARGO().charAt(0)) {
-					case 'R': objMain.changeScene("ReservacionesScene.fxml");	objDatabase.CloseDataBase(); break;
-					case 'A': objMain.changeScene("AdministracionScene.fxml");	break;
-					case 'C': objMain.changeScene("ContabilidadScene.fxml");	break;
-					case 'D': objMain.changeScene("DireccionScene.fxml");		break;
+					case 'R': objMain.changeScene("ReservacionesScene.fxml");  database.CloseDataBase(); break;
+					case 'A': objMain.changeScene("AdministracionScene.fxml"); database.CloseDataBase(); break;
+					case 'C': objMain.changeScene("ContabilidadScene.fxml");   database.CloseDataBase(); break;
+					case 'D': objMain.changeScene("DireccionScene.fxml");	   database.CloseDataBase(); break;
 				default: break;
 				}
 			}else {
