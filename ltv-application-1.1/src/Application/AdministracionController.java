@@ -5,6 +5,8 @@ import Database.DataBase;
 import Database.SolicitudesTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
@@ -18,6 +20,7 @@ public class AdministracionController {
 	public ObservableList<String> choiceItems = FXCollections.observableArrayList();
 	public Label lblFecha; public Label lblCliente; public Label lblSolicitud;
 	
+	Alert alert = new Alert(AlertType.INFORMATION);
 	DataBase database = new DataBase();
 	SolicitudesTable Solicitud = new SolicitudesTable();
 	ResultSet miResultset; TitledPane tltpEntrantes;
@@ -84,7 +87,10 @@ public class AdministracionController {
 			database.PrepareSolicitudes();
 			database.UpdateSolicitudes(listSolicitudes.getSelectionModel().getSelectedItem(),
 					choiceAgentes.getSelectionModel().getSelectedItem(),"A");
-			
+			alert.setTitle("Asignacion de solicitudes");
+			alert.setHeaderText("Se ha asignado correctamente la solicitud al agente");
+			alert.setContentText("Favor de Actualizar las solicitudes");
+			alert.showAndWait();	
 		}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
 		System.out.println("Error al asignar solicitud"); } 
 	}
