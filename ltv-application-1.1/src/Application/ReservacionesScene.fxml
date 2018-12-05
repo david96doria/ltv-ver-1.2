@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Accordion?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -12,15 +10,10 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Application.ReservacionesController">
    <children>
@@ -31,7 +24,7 @@
                   <MenuItem fx:id="btnNuevo" mnemonicParsing="false" onAction="#callNuevo" text="Nuevo" />
                   <MenuItem fx:id="btnGuardar" mnemonicParsing="false" onAction="#callGuardar" text="Guardar" />
                   <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#callCerrarSesion" text="Cerrar sesión" />
+                  <MenuItem fx:id="btnCerrarSesion" mnemonicParsing="false" text="Cerrar sesión" />
                   <MenuItem fx:id="btnSalir" mnemonicParsing="false" text="Salir" />
                </items>
             </Menu>
@@ -61,23 +54,17 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="879.0">
                      <children>
                         <Label layoutX="14.0" layoutY="14.0" prefWidth="150.0" text="Fecha de recepción" />
-                        <Label layoutX="164.0" layoutY="14.0" prefWidth="150.0" text="Nombre del solicitante" />
-                        <Label layoutX="323.0" layoutY="14.0" prefWidth="150.0" text="Correo electrónico" />
+                        <Label layoutX="204.0" layoutY="14.0" prefWidth="150.0" text="Nombre del solicitante" />
+                        <Label layoutX="375.0" layoutY="14.0" prefWidth="150.0" text="Correo electrónico" />
                         <Label layoutX="14.0" layoutY="74.0" prefWidth="150.0" text="Comentarios" />
                         <TextArea fx:id="txtComentarios" layoutX="14.0" layoutY="91.0" prefHeight="157.0" prefWidth="870.0" />
-                        <Label layoutX="484.0" layoutY="14.0" prefWidth="150.0" text="Teléfono" />
-                        <Label layoutX="644.0" layoutY="14.0" text="Destino" />
+                        <Label layoutX="546.0" layoutY="14.0" prefWidth="150.0" text="Teléfono" />
+                        <Label layoutX="735.0" layoutY="14.0" text="Destino" />
                         <DatePicker fx:id="txtFecha" layoutX="14.0" layoutY="42.0" prefHeight="25.0" prefWidth="141.0" />
-                        <TextField fx:id="txtNombre" layoutX="164.0" layoutY="42.0" />
-                        <TextField fx:id="txtCorreo" layoutX="323.0" layoutY="42.0" />
-                        <TextField fx:id="txtTelefono" layoutX="484.0" layoutY="42.0" />
-                        <TextField fx:id="txtDestino" layoutX="644.0" layoutY="42.0" />
-                        <Button fx:id="btnRegistrar" layoutX="340.0" layoutY="255.0" mnemonicParsing="false" onAction="#callRegistrar" prefHeight="36.0" prefWidth="117.0" text="Registrar" />
-                        <ImageView fitHeight="250.0" fitWidth="900.0" layoutX="-1.0" layoutY="322.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../resources/Cintillo_LTV.jpg" />
-                           </image>
-                        </ImageView>
+                        <TextField fx:id="txtNombre" layoutX="204.0" layoutY="42.0" />
+                        <TextField fx:id="txtCorreo" layoutX="375.0" layoutY="42.0" />
+                        <TextField fx:id="txtTelefono" layoutX="546.0" layoutY="42.0" />
+                        <TextField fx:id="txtDestino" layoutX="735.0" layoutY="42.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -88,74 +75,18 @@
                      <children>
                         <Accordion nodeOrientation="LEFT_TO_RIGHT" prefHeight="544.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <panes>
-                              <TitledPane fx:id="titAsignadas" animated="false" text="Asignadas">
+                              <TitledPane animated="false" text="Asignadas">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <ListView fx:id="lstSolicitudes" layoutX="27.6" layoutY="48.6" onMouseClicked="#callListSelect" prefHeight="436.0" prefWidth="860.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="39.0" />
-                                          <Button fx:id="btnRefrescar" layoutX="19.0" layoutY="14.0" mnemonicParsing="false" onAction="#callRefrescar" text="Refrescar" />
+                                          <ListView fx:id="lstSolicitudes" prefHeight="493.0" prefWidth="898.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                  </content>
                               </TitledPane>
-                              <TitledPane fx:id="titCaptura" animated="false" text="Captura de datos">
+                              <TitledPane animated="false" text="Captura de datos">
                                  <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <Label layoutX="14.0" layoutY="35.0" text="Fecha de la recepción" />
-                                          <TextField fx:id="Costeo_Fecha" layoutX="137.0" layoutY="31.0" />
-                                          <Label layoutX="306.0" layoutY="35.0" text="Elaborado por" />
-                                          <TextField fx:id="Costeo_Ejecutivo" layoutX="393.0" layoutY="31.0" />
-                                          <Label layoutX="14.0" layoutY="65.0" text="Nombre del solicitante" />
-                                          <TextField fx:id="Costeo_SolicitanteNombre" layoutX="137.0" layoutY="61.0" />
-                                          <Label layoutX="306.0" layoutY="65.0" text="Nombre agencia o empresa" />
-                                          <TextField fx:id="Costeo_Agencia_Empresa" layoutX="460.0" layoutY="61.0" />
-                                          <Label layoutX="626.0" layoutY="65.0" text="Ciudad" />
-                                          <TextField fx:id="Costeo_Ciudad" layoutX="676.0" layoutY="61.0" />
-                                          <Label layoutX="364.0" layoutY="4.0" text="1. Información del Costeo" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="14.0" layoutY="96.0" text="Correo electronico" />
-                                          <TextField fx:id="Costeo_Correo" layoutX="137.0" layoutY="92.0" />
-                                          <Label layoutX="306.0" layoutY="96.0" text="Telefono movil" />
-                                          <TextField fx:id="Costeo_TelMovil" layoutX="393.0" layoutY="92.0" />
-                                          <Label layoutX="560.0" layoutY="96.0" text="Telefono fijo" />
-                                          <TextField fx:id="Costeo_TelFijo" layoutX="645.0" layoutY="92.0" />
-                                          <Label layoutX="14.0" layoutY="125.0" text="Programa" />
-                                          <Label layoutX="246.0" layoutY="125.0" text="No. de días" />
-                                          <TextField fx:id="Costeo_dias" layoutX="319.0" layoutY="121.0" prefHeight="25.0" prefWidth="35.0" />
-                                          <Label layoutX="380.0" layoutY="125.0" text="No. de Adultos" />
-                                          <TextField fx:id="Costeo_adultos" layoutX="474.0" layoutY="121.0" prefHeight="25.0" prefWidth="38.0" />
-                                          <Label layoutX="535.0" layoutY="125.0" text="No. de menores" />
-                                          <TextField fx:id="Costeo_menores" layoutX="627.0" layoutY="121.0" prefHeight="25.0" prefWidth="31.0" />
-                                          <Label layoutX="676.0" layoutY="125.0" text="Expectativa hotelaria" />
-                                          <Label layoutX="373.0" layoutY="172.0" text="2. Información de tasas" textAlignment="CENTER">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </Label>
-                                          <Label layoutX="14.0" layoutY="199.0" text="Aérolinea" />
-                                          <ComboBox fx:id="Costeo_Programa" layoutX="82.0" layoutY="121.0" prefHeight="25.0" prefWidth="137.0" />
-                                          <ComboBox fx:id="Costeo_estrellas" layoutX="800.0" layoutY="121.0" prefHeight="25.0" prefWidth="84.0" />
-                                          <ComboBox fx:id="Costeo_aerolinea" layoutX="76.0" layoutY="195.0" prefHeight="25.0" prefWidth="133.0" />
-                                          <Label layoutX="219.0" layoutY="199.0" text="Fecha salida" />
-                                          <DatePicker fx:id="Costeo_salida" layoutX="294.0" layoutY="195.0" prefHeight="25.0" prefWidth="122.0" />
-                                          <Label layoutX="439.0" layoutY="199.0" text="Fecha llegada" />
-                                          <DatePicker fx:id="Costeo_llegada" layoutX="519.0" layoutY="195.0" prefHeight="25.0" prefWidth="120.0" />
-                                          <Label layoutX="662.0" layoutY="199.0" text="Tipo de vuelo" />
-                                          <ComboBox fx:id="Costeo_tipoVuelo" layoutX="750.0" layoutY="195.0" prefHeight="25.0" prefWidth="130.0" />
-                                          <Label layoutX="14.0" layoutY="239.0" text="Origen" />
-                                          <TextField fx:id="Costeo_origen" layoutX="63.0" layoutY="235.0" />
-                                          <Label layoutX="224.0" layoutY="239.0" text="Destino" />
-                                          <TextField fx:id="Costeo_destino" layoutX="271.0" layoutY="235.0" />
-                                          <ImageView fitHeight="250.0" fitWidth="900.0" layoutX="-1.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../resources/Cintillo_LTV.jpg" />
-                                             </image>
-                                          </ImageView>
-                                       </children></AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                  </content>
                               </TitledPane>
                            </panes>
@@ -163,41 +94,6 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-            <Tab text="Administrar clientes">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TableView fx:id="tableClientes" layoutX="15.0" layoutY="48.0" prefHeight="339.0" prefWidth="849.0">
-                          <columns>
-                            <TableColumn fx:id="tabNombre" prefWidth="307.0" text="Nombre" />
-                            <TableColumn fx:id="tabEmail" minWidth="0.0" prefWidth="208.0" text="Email" />
-                              <TableColumn fx:id="TabTel" prefWidth="142.0" text="Teléfono" />
-                              <TableColumn fx:id="TabUbi" prefWidth="213.0" text="Ubicación" />
-                          </columns>
-                        </TableView>
-                        <Label layoutX="401.0" layoutY="396.0" text="Agregar cliente">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnRefrescarClientes" layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#callRefrescarClientes" prefHeight="25.0" prefWidth="82.0" text="Refrescar" />
-                        <Label layoutX="14.0" layoutY="436.0" text="Nombre" />
-                        <Label layoutX="200.0" layoutY="436.0" text="Email" />
-                        <Label layoutX="376.0" layoutY="436.0" text="Teléfono" />
-                        <Label layoutX="552.0" layoutY="436.0" text="Ubicación" />
-                        <TextField fx:id="txtClienteNombre" layoutX="14.0" layoutY="459.0" />
-                        <TextField fx:id="txtClienteEmail" layoutX="200.0" layoutY="459.0" />
-                        <TextField fx:id="txtClienteTel" layoutX="375.0" layoutY="459.0" />
-                        <TextField fx:id="txtClienteUbicacion" layoutX="552.0" layoutY="459.0" />
-                        <Button fx:id="btnAgregarCliente" layoutX="736.0" layoutY="437.0" mnemonicParsing="false" onAction="#callAgregarCliente" prefHeight="44.0" prefWidth="52.0" text="+">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
         </tabs>
       </TabPane>
    </children>

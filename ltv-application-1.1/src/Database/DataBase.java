@@ -25,7 +25,7 @@ public class DataBase {
 			stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?,?,?,?)");
 			stCheck  = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE agente=?");
 			stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE status=?");
-			stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET status=?, WHERE cliente=?");
+			stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET agente=?, status=? WHERE fecha=? && nombre=? && destino=?");
 		}catch(Exception e) {
 			PrintErrMss("Error al conectar con la base de datos.");
 			System.out.println(e.getMessage());
@@ -98,10 +98,25 @@ public class DataBase {
 //		}catch(SQLException ex) {System.out.println("Error al actualizar solicitud");
 //        System.out.println(ex.getMessage());}
 //	}
-	public ResultSet CheckAllSolicitudes(String Estatus) {
+
+	public void UpdateSolicitudStatus(SolicitudesTable sol) {
+		try {
+			stUpdate.setString(1, sol.getAGENTE());
+			stUpdate.setString(2, "A");
+			stUpdate.setString(3, sol.getFECHA());
+			stUpdate.setString(4, sol.getNOMBRE());
+			stUpdate.setString(5, sol.getDESTINO());
+			stUpdate.executeUpdate();
+		}catch(Exception e) {
+			PrintErrMss("Error al actualizar solicitud.");
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public ResultSet CheckAllSolicitudes(String status) {
 		try {
 			stCheck = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE status=?");
-			stCheck.setString(1, Estatus);
+			stCheck.setString(1, status);
 			ResultSet miResultset = stCheck.executeQuery();
 			return miResultset;
 		}catch(SQLException ex) {System.out.println("Error al consultar solicitud");
@@ -231,7 +246,19 @@ public class DataBase {
     System.out.println(ex.getMessage());}
 	}
 	
-	
+	public ResultSet CheckAvailableUsuarios(boolean Disponible) {
+		try {
+			stCheck = Conexion.prepareStatement("SELECT * FROM usuariostable WHERE disponible=? && CARGO=?");
+			stCheck.setBoolean(1, Disponible);
+			stCheck.setString(2, "R");
+			ResultSet miResultset = stCheck.executeQuery();
+			return miResultset;
+		}catch(SQLException e) {
+			PrintErrMss("Error al consultar usuarios disponibles.");
+			System.out.println(e.getMessage()); 
+			return null;
+		}
+	}
 	//////////// CLIENTES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	public ResultSet getClientes () {
 		try {
