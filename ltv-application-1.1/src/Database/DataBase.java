@@ -18,9 +18,9 @@ public class DataBase {
 	public void PrepareSolicitudes() throws Exception {
 		Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ltv-database","root","");
 		stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?,?,?,?)");
-	    stCheck = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE estatus=?");
-	    stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE cliente=?");
-	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET agente=?, estatus=? WHERE cliente=?");
+	    stCheck = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE status=?");
+	    stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE nombre=?");
+	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET agente=?, estatus=? WHERE nombre=?");
 	}
 
 	public void PrepareUsuarios() throws Exception {
