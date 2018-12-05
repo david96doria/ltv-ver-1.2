@@ -31,7 +31,8 @@ public class AdministracionController {
 			
 			while(miResultset.next()) {
 				
-				SolicitudesItems.add(miResultset.getString("fecha"));
+				SolicitudesItems.add(miResultset.getString("fecha")+" "+miResultset.getString("nombre")+"->"+
+						miResultset.getString("destino"));
 			} 
 			
 			listSolicitudes.setItems(SolicitudesItems);
