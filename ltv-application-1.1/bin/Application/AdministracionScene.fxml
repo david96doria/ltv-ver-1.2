@@ -33,7 +33,7 @@
           </Menu>
             <Menu mnemonicParsing="false" text="Vista">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#MostrarSolicitudesEntrantes" text="Consulta de Clientes" />
+                <MenuItem mnemonicParsing="false" text="Consulta de Clientes" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Ayuda">
@@ -122,7 +122,8 @@
                                                             </AnchorPane>
                                                             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                                                <children>
-                                                                  <Button fx:id="btnAsignar" layoutX="102.0" layoutY="31.0" mnemonicParsing="false" text="Asignar" AnchorPane.leftAnchor="102.0" AnchorPane.topAnchor="31.0" />
+                                                                  <Button fx:id="btnAsignar" layoutX="117.0" layoutY="31.0" mnemonicParsing="false" text="Asignar" AnchorPane.leftAnchor="117.0" AnchorPane.topAnchor="31.0" />
+                                                                  <Button fx:id="btnActualizar" layoutX="14.0" layoutY="31.0" mnemonicParsing="false" onAction="#MostrarSolicitudesEntrantes" text="Actualizar" />
                                                                </children>
                                                             </AnchorPane>
                                                          </children>

@@ -17,10 +17,10 @@ public class DataBase {
 	
 	public void PrepareSolicitudes() throws Exception {
 		Conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/ltv-database","root","");
-		stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?)");
+		stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?,?,?,?)");
 	    stCheck = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE estatus=?");
 	    stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE cliente=?");
-	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET usuario=?, estatus=? WHERE cliente=?");
+	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET agente=?, estatus=? WHERE cliente=?");
 	}
 
 	public void PrepareUsuarios() throws Exception {
@@ -63,26 +63,7 @@ public class DataBase {
 	
 	//////////// SOLICITUDES \\\\\\\\ \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
-	public SolicitudesTable CheckSolicitudes(String Estatus) {
-		
-		try {
-			SolicitudesTable Solicitud = new SolicitudesTable();
-			stCheck.setString(1,Estatus);
-			ResultSet miResultset = stCheck.executeQuery();
-			while(miResultset.next()){
-			Solicitud = new SolicitudesTable(miResultset.getString("fecha"), miResultset.getString("cliente"),
-			miResultset.getString("solicitud"), miResultset.getString("estatus"), miResultset.getString("usuario"));
-			}
-			miResultset.close();
-			return Solicitud;
-			
-		}catch(SQLException ex) {System.out.println("Error al consultar solicitud");
-	         System.out.println(ex.getMessage());
-	         ex.printStackTrace(); return null;}
-		
-	}
-	
-public ResultSet CheckAllSolicitudes(String Estatus) {
+public ResultSet CheckSolicitudes(String Estatus) {
 		
 		try {
 			
@@ -101,8 +82,8 @@ public ResultSet CheckAllSolicitudes(String Estatus) {
 		try {
 			SolicitudesTable Solicitud = new SolicitudesTable();
 			stUpdate.setString(3, Cliente);
-			stUpdate.setString(1, Solicitud.getUSUARIO());
-			stUpdate.setString(2, Solicitud.getESTATUS());
+			stUpdate.setString(1, Solicitud.getAGENTE());
+			stUpdate.setString(2, Solicitud.getSTATUS());
 			stUpdate.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al actualizar solicitud");
         System.out.println(ex.getMessage());}
@@ -122,10 +103,13 @@ public ResultSet CheckAllSolicitudes(String Estatus) {
 		try {
 			SolicitudesTable Solicitud = new SolicitudesTable();
 			stInsert.setString(1, Solicitud.getFECHA());
-			stInsert.setString(2, Solicitud.getCLIENTE());
-			stInsert.setString(3, Solicitud.getSOLICITUD());
-			stInsert.setString(4, Solicitud.getESTATUS());
-			stInsert.setString(5, Solicitud.getUSUARIO());
+			stInsert.setString(2, Solicitud.getNOMBRE());
+			stInsert.setString(3, Solicitud.getCORREO());
+			stInsert.setString(4, Solicitud.getTELEFONO());
+			stInsert.setString(5, Solicitud.getDESTINO());
+			stInsert.setString(6, Solicitud.getCOMENTARIOS());
+			stInsert.setString(7, Solicitud.getAGENTE());
+			stInsert.setString(8, Solicitud.getSTATUS());
 			stInsert.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al ingresar solicitud");
         System.out.println(ex.getMessage());}
@@ -133,24 +117,14 @@ public ResultSet CheckAllSolicitudes(String Estatus) {
 	
 	
 	//////////// USUARIOS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public UsuariosTable CheckUsuarios(String Nombre) {
-		UsuariosTable Usuario = null;
+	public ResultSet CheckUsuarios(String Nombre) {
+		
 	try {
 		
 		stCheck.setString(1, Nombre);
 		ResultSet miResultset=stCheck.executeQuery();
-		miResultset.next();
-		print(miResultset.getString("clave"));
 		
-		while(miResultset.next()) {
-			if(Nombre.equals(miResultset.getString("nombre"))) {
-				Usuario = new UsuariosTable(miResultset.getString("nombre"), miResultset.getString("email"), 
-						miResultset.getString("cargo"), miResultset.getString("usuario"), miResultset.getString("clave"), 
-						miResultset.getString("disponible"));
-				break;}
-		}
-		miResultset.close();
-		return Usuario;
+		return miResultset;
 	}catch(SQLException ex) {System.out.println("Error al consultar usuario");
     System.out.println(ex.getMessage()); return null;}
 	}
@@ -205,21 +179,14 @@ public ResultSet CheckAllSolicitudes(String Estatus) {
 	
 	
 	//////////// CLIENTES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public ClientesTable CheckClientes(String Nombre) {
-		ClientesTable Cliente = null;
+	public ResultSet CheckClientes(String Nombre) {
+		
 		try {
 			
 			stCheck.setString(1, Nombre);
 			ResultSet miResultset=stCheck.executeQuery();
 			
-			while(miResultset.next()) {
-				if(Nombre.equals(miResultset.getString("nombre"))) {
-					Cliente = new ClientesTable(miResultset.getString("nombre"), miResultset.getString("email"), 
-							miResultset.getString("telefono"), miResultset.getString("ubicacion"));
-					break;}
-			}
-			miResultset.close();
-			return Cliente;
+			return miResultset;
 		}catch(SQLException ex) {System.out.println("Error al consultar cliente");
 	    System.out.println(ex.getMessage()); return null;}
 			
@@ -259,20 +226,13 @@ public ResultSet CheckAllSolicitudes(String Estatus) {
 	
 	//////////// VENTAS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 	
-	public VentasTable CheckVentas(String Expediente) {
-		VentasTable Venta=null;
+	public ResultSet CheckVentas(String Expediente) {
+		
 		try {
 			stCheck.setString(1, Expediente);
 			ResultSet miResultset=stCheck.executeQuery();
-			
-			Venta = new VentasTable(miResultset.getString("cliente"), miResultset.getString("programa"),
-									miResultset.getString("proveedores"), miResultset.getDouble("total venta"),
-									miResultset.getDouble("deposito"), miResultset.getString("fecha limite"),
-									miResultset.getString("fecha viaje"), miResultset.getString("expediente"),
-									miResultset.getDouble("total a pagar"), miResultset.getString("fecha"),
-									miResultset.getString("usuario"));
-		miResultset.close();	
-		return Venta;	
+				
+		return miResultset;	
 		
 		}catch(SQLException ex) {System.out.println("Error al consultar venta");
 	    System.out.println(ex.getMessage()); return null;}
