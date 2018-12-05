@@ -3,54 +3,91 @@ package Database;
 public class SolicitudesTable {
 
 	private String FECHA;
-	private String CLIENTE;
-	private String SOLICITUD;
-	private String ESTATUS;
-	private String USUARIO;
-	
-	public SolicitudesTable() {
-	
-	}
-	
-	public SolicitudesTable(String Fecha, String Cliente, String Solicitud, String Estatus, String Usuario) {
-		this.FECHA=Fecha;
-		this.CLIENTE=Cliente;
-		this.SOLICITUD=Solicitud;
-		this.ESTATUS=Estatus;
-		this.USUARIO=Usuario;
-	}
-	
-	
+	private String NOMBRE;
+	private String CORREO;
+	private String TELEFONO;
+	private String DESTINO;
+	private String COMENTARIOS;
+	private String AGENTE;
+	private char   STATUS;
+
 	public String getFECHA() {
 		return FECHA;
 	}
+
 	public void setFECHA(String fECHA) {
 		FECHA = fECHA;
 	}
-	public String getCLIENTE() {
-		return CLIENTE;
+
+	public String getNOMBRE() {
+		return NOMBRE;
 	}
-	public void setCLIENTE(String cLIENTE) {
-		CLIENTE= cLIENTE;
-	}	
-	public String getSOLICITUD() {
-		return SOLICITUD;
+
+	public void setNOMBRE(String nOMBRE) {
+		NOMBRE = nOMBRE;
 	}
-	public void setSOLICITUD(String sOLICITUD) {
-		SOLICITUD = sOLICITUD;
+
+	public String getCORREO() {
+		return CORREO;
 	}
-	public String getESTATUS() {
-		return ESTATUS;
+
+	public void setCORREO(String cORREO) {
+		CORREO = cORREO;
 	}
-	public void setESTATUS(String eSTATUS) {
-		ESTATUS = eSTATUS;
+
+	public String getTELEFONO() {
+		return TELEFONO;
 	}
-	public String getUSUARIO() {
-		return USUARIO;
+
+	public void setTELEFONO(String tELEFONO) {
+		TELEFONO = tELEFONO;
 	}
-	public void setUSUARIO(String uSUARIO) {
-		USUARIO = uSUARIO;
+
+	public String getDESTINO() {
+		return DESTINO;
 	}
+
+	public void setDESTINO(String dESTINO) {
+		DESTINO = dESTINO;
+	}
+
+	public String getCOMENTARIOS() {
+		return COMENTARIOS;
+	}
+
+	public void setCOMENTARIOS(String cOMENTARIOS) {
+		COMENTARIOS = cOMENTARIOS;
+	}
+
+	public String getAGENTE() {
+		return AGENTE;
+	}
+
+	public void setAGENTE(String aGENTE) {
+		AGENTE = aGENTE;
+	}
+
+	public char getSTATUS() {
+		return STATUS;
+	}
+
+	public void setSTATUS(char sTATUS) {
+		STATUS = sTATUS;
+	}
+
+	public SolicitudesTable() {
 	
-	
+	}
+
+	public SolicitudesTable(String fECHA, String nOMBRE, String cORREO, String tELEFONO, String dESTINO, String cOMENTARIOS, String aGENTE, char sTATUS) {
+		super();
+		FECHA = fECHA;
+		NOMBRE = nOMBRE;
+		CORREO = cORREO;
+		TELEFONO = tELEFONO;
+		DESTINO = dESTINO;
+		COMENTARIOS = cOMENTARIOS;
+		AGENTE = aGENTE;
+		STATUS = sTATUS;
+	}
 }
