@@ -1,7 +1,6 @@
 package Application;
 
 import java.sql.ResultSet;
-
 import Database.DataBase;
 import Database.SolicitudesTable;
 import javafx.collections.FXCollections;
@@ -22,10 +21,10 @@ public class AdministracionController {
 	DataBase database = new DataBase();
 	SolicitudesTable Solicitud = new SolicitudesTable();
 	ResultSet miResultset; TitledPane tltpEntrantes;
-	
+		
 	
 	public void MostrarSolicitudesEntrantes() { 
-		//listSolicitudes.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> System.out.println(newValue));
+		//listSolicitudes.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> System.out.println(v));
 		listSolicitudes.getItems().clear();
 		choiceAgentes.getItems().clear();
 		
@@ -35,8 +34,8 @@ public class AdministracionController {
 			
 			while(miResultset.next()) {
 				
-				SolicitudesItems.add(miResultset.getString("fecha")+" "+miResultset.getString("nombre")+"->"+
-						miResultset.getString("destino"));
+				SolicitudesItems.add(miResultset.getString("nombre"));
+				
 			} 
 			
 			
@@ -59,6 +58,25 @@ public class AdministracionController {
 			System.out.println("Error al mostar agentes");} 
 			
 			
+	}
+	
+	public void MostrarSolicitudSeleccionada() {
+		
+		try {
+			database.PrepareSolicitudes();
+			miResultset = database.CheckSolicitudes("P");
+			while(miResultset.next()) {
+				if(listSolicitudes.getSelectionModel().getSelectedItem().equals(miResultset.getString("nombre"))){
+					lblFecha.setText(miResultset.getString("fecha")); 
+					lblCliente.setText(miResultset.getString("nombre"));
+					lblSolicitud.setText(miResultset.getString("comentarios")); break;
+				}
+			}
+	
+			
+			
+		}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
+		System.out.println("Error al imprimir solicitud");} 
 	}
 	
 	public void MostrarSolicitudesAsignadas() {
