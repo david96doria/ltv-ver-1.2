@@ -117,7 +117,7 @@
                                                             </AnchorPane>
                                                             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                                                <children>
-                                                                  <ChoiceBox fx:id="chbUsuarios" layoutX="53.0" layoutY="31.0" prefWidth="150.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="31.0" />
+                                                                  <ChoiceBox fx:id="choiceAgentes" layoutX="53.0" layoutY="31.0" prefWidth="150.0" AnchorPane.rightAnchor="53.0" AnchorPane.topAnchor="31.0" />
                                                                </children>
                                                             </AnchorPane>
                                                             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">

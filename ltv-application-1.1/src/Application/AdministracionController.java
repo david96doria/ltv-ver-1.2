@@ -8,6 +8,7 @@ import javafx.*;
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
 
@@ -15,6 +16,9 @@ public class AdministracionController {
 
 	public ListView<String> listSolicitudes = new ListView<String>();
 	public ObservableList<String> SolicitudesItems = FXCollections.observableArrayList();
+	public ChoiceBox<String> choiceAgentes = new ChoiceBox<String>();
+	public ObservableList<String> choiceItems = FXCollections.observableArrayList();
+	
 	DataBase database = new DataBase();
 	SolicitudesTable Solicitud = new SolicitudesTable();
 	ResultSet miResultset;
@@ -24,6 +28,7 @@ public class AdministracionController {
 		
 		System.out.println("Paso ");
 		listSolicitudes.getItems().clear();
+		choiceAgentes.getItems().clear();
 		
 		try {
 			database.PrepareSolicitudes();
@@ -40,6 +45,19 @@ public class AdministracionController {
 		}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
 		System.out.println("Error al mostar solicitudes");} 
 		
+		
+			try {
+				database.PrepareUsuarios();
+				miResultset = database.CheckAvailableUsuarios(true);
+				while(miResultset.next()) {
+					choiceItems.add(miResultset.getString("nombre"));
+				}
+				
+				choiceAgentes.setItems(choiceItems);
+				
+			}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
+			System.out.println("Error al mostar agentes");} 
+			
 		
 	}
 	

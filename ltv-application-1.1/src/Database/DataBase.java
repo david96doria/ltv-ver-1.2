@@ -142,6 +142,18 @@ public ResultSet CheckSolicitudes(String Estatus) {
 		}
 	}
 	
+	public ResultSet CheckAvailableUsuarios(boolean Disponible) {
+		
+		try {
+			stCheck=Conexion.prepareStatement("SELECT * FROM usuariostable WHERE disponible=?");
+			stCheck.setBoolean(1, Disponible);
+			ResultSet miResultset=stCheck.executeQuery();
+			
+			return miResultset;
+		}catch(SQLException ex) {System.out.println("Error al consultar usuario");
+	    System.out.println(ex.getMessage()); return null;}
+		}
+	
 	public void UpdateUsuarios(String Nombre) {
 		try {
 			UsuariosTable Usuario = new UsuariosTable();
