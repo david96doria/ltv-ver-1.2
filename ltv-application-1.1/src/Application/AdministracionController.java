@@ -3,6 +3,7 @@ package Application;
 import java.sql.ResultSet;
 import Database.DataBase;
 import Database.SolicitudesTable;
+import javafx.beans.value.ObservableListValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -25,13 +26,15 @@ public class AdministracionController {
 	
 	public ListView<String> listAgentes = new ListView<String>();
 	public ObservableList<String> AgentesItems = FXCollections.observableArrayList();
-	public TableView<String> tableSolicitudesAsignadas = new TableView<String>();
+	public TableView<ObservableList<String>> tableSolicitudesAsignadas = new TableView<ObservableList<String>>();
+	
 	public ObservableList<String> AsignadasItems1 = FXCollections.observableArrayList();
 	public ObservableList<String> AsignadasItems2 = FXCollections.observableArrayList();
 	public ObservableList<String> AsignadasItems3 = FXCollections.observableArrayList();
-	public TableColumn<ObservableList<String>, String> Fecha = new TableColumn<ObservableList<String>, String>();
-	public TableColumn<ObservableList<String>, String> Cliente = new TableColumn<ObservableList<String>, String>();
-	public TableColumn<ObservableList<String>, String> Comentarios = new TableColumn<ObservableList<String>, String>();
+	
+	//public TableColumn<ObservableList<String>, String> columnCliente = new TableColumn<ObservableList<String>, String>();
+	//public TableColumn<ObservableList<String>, String> columnSolicitud = new TableColumn<ObservableList<String>, String>();
+	
 	
 	Alert alert = new Alert(AlertType.INFORMATION);
 	DataBase database = new DataBase();
@@ -133,12 +136,16 @@ public class AdministracionController {
 			miResultset = database.CheckSolicitudes("A");
 			while(miResultset.next()) {
 				if(listAgentes.getSelectionModel().getSelectedItem().equals(miResultset.getString("agente"))) {
-					
+					AsignadasItems1.add(miResultset.getString("fecha"));
+					AsignadasItems2.add(miResultset.getString("nombre"));
+					AsignadasItems3.add(miResultset.getString("comentarios"));
+					System.out.println(AsignadasItems1);
 				}
 				
 				
-			}
-			
+		
+				
+		}
 		}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
 		System.out.println("Error al mostrar solicitud de agentes");} 
 		
