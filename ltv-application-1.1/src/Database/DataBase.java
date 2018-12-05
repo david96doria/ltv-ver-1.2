@@ -20,7 +20,7 @@ public class DataBase {
 		stInsert = Conexion.prepareStatement("INSERT INTO solicitudestable VALUES (?,?,?,?,?,?,?,?)");
 	    stCheck = Conexion.prepareStatement("SELECT * FROM solicitudestable WHERE status=?");
 	    stDelete = Conexion.prepareStatement("DELETE FROM solicitudestable WHERE nombre=?");
-	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET agente=?, estatus=? WHERE nombre=?");
+	    stUpdate = Conexion.prepareStatement("UPDATE solicitudestable SET agente=?, status=? WHERE nombre=?");
 	}
 
 	public void PrepareUsuarios() throws Exception {

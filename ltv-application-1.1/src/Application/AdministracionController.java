@@ -49,7 +49,7 @@ public class AdministracionController {
 				database.PrepareUsuarios();
 				miResultset = database.CheckAvailableUsuarios(true);
 				while(miResultset.next()) {
-					choiceItems.add(miResultset.getString("nombre"));
+					choiceItems.add(miResultset.getString("usuario"));
 				}
 				
 				choiceAgentes.setItems(choiceItems);
@@ -86,10 +86,9 @@ public class AdministracionController {
 					choiceAgentes.getSelectionModel().getSelectedItem(),"A");
 			
 		}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
-		System.out.println("Error al asignar solicitud");} 
+		System.out.println("Error al asignar solicitud"); } 
 	}
 		
-	
 	
 	public void MostrarSolicitudesAsignadas() {
 		

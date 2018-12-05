@@ -118,7 +118,7 @@
                                                             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                                                <children>
                                                                   <Button fx:id="btnActualizar" layoutX="66.0" layoutY="32.0" mnemonicParsing="false" onAction="#MostrarSolicitudesEntrantes" text="Actualizar" />
-                                                                  <Button fx:id="btnAsignar" alignment="CENTER_RIGHT" layoutX="175.0" layoutY="32.0" mnemonicParsing="false" text="Asignar" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="32.0" />
+                                                                  <Button fx:id="btnAsignar" alignment="CENTER_RIGHT" layoutX="175.0" layoutY="32.0" mnemonicParsing="false" onAction="#AsignarSolicitud" text="Asignar" AnchorPane.leftAnchor="175.0" AnchorPane.topAnchor="32.0" />
                                                                </children>
                                                             </AnchorPane>
                                                             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
