@@ -78,12 +78,12 @@ public ResultSet CheckSolicitudes(String Estatus) {
 	}
 	
 	
-	public void UpdateSolicitudes(String Cliente) {
-		try {
-			SolicitudesTable Solicitud = new SolicitudesTable();
+	public void UpdateSolicitudes(String Cliente, String Agente, String Estatus) {
+		try 
+		{
+			stUpdate.setString(1, Agente);
+			stUpdate.setString(2, Estatus);
 			stUpdate.setString(3, Cliente);
-			stUpdate.setString(1, Solicitud.getAGENTE());
-			stUpdate.setString(2, Solicitud.getSTATUS());
 			stUpdate.executeUpdate();
 		}catch(SQLException ex) {System.out.println("Error al actualizar solicitud");
         System.out.println(ex.getMessage());}

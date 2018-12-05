@@ -79,6 +79,18 @@ public class AdministracionController {
 		System.out.println("Error al imprimir solicitud");} 
 	}
 	
+	public void AsignarSolicitud() {
+		try {
+			database.PrepareSolicitudes();
+			database.UpdateSolicitudes(listSolicitudes.getSelectionModel().getSelectedItem(),
+					choiceAgentes.getSelectionModel().getSelectedItem(),"A");
+			
+		}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
+		System.out.println("Error al asignar solicitud");} 
+	}
+		
+	
+	
 	public void MostrarSolicitudesAsignadas() {
 		
 	}
