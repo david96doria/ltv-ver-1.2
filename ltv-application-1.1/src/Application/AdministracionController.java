@@ -4,13 +4,12 @@ import java.sql.ResultSet;
 
 import Database.DataBase;
 import Database.SolicitudesTable;
-import javafx.*;
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TitledPane;
+import javafx.scene.control.Label;
 
 public class AdministracionController {
 
@@ -18,15 +17,15 @@ public class AdministracionController {
 	public ObservableList<String> SolicitudesItems = FXCollections.observableArrayList();
 	public ChoiceBox<String> choiceAgentes = new ChoiceBox<String>();
 	public ObservableList<String> choiceItems = FXCollections.observableArrayList();
+	public Label lblFecha; public Label lblCliente; public Label lblSolicitud;
 	
 	DataBase database = new DataBase();
 	SolicitudesTable Solicitud = new SolicitudesTable();
-	ResultSet miResultset;
-	TitledPane tltpEntrantes;
+	ResultSet miResultset; TitledPane tltpEntrantes;
 	
-	public void MostrarSolicitudesEntrantes() {
-		
-		System.out.println("Paso ");
+	
+	public void MostrarSolicitudesEntrantes() { 
+		//listSolicitudes.getSelectionModel().selectedItemProperty().addListener((v, oldValue, newValue) -> System.out.println(newValue));
 		listSolicitudes.getItems().clear();
 		choiceAgentes.getItems().clear();
 		
@@ -39,6 +38,7 @@ public class AdministracionController {
 				SolicitudesItems.add(miResultset.getString("fecha")+" "+miResultset.getString("nombre")+"->"+
 						miResultset.getString("destino"));
 			} 
+			
 			
 			listSolicitudes.setItems(SolicitudesItems);
 			
@@ -58,7 +58,7 @@ public class AdministracionController {
 			}catch (Exception e) {System.out.println(e.getMessage()); e.printStackTrace(); 
 			System.out.println("Error al mostar agentes");} 
 			
-		
+			
 	}
 	
 	public void MostrarSolicitudesAsignadas() {
